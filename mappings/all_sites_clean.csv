@@ -1,0 +1,340 @@
+raw_site,clean_site,origin
+Abdominal Wall,abdomen_abdominalwall,primary&mets
+Flank,abdomen_abdominalwall,primary&mets
+RUQ,abdomen_abdominalwall,primary&mets
+Abdominal wall,abdomen_abdominalwall,primary&mets
+Bile Duct,abdomen_biliary,primary&mets
+Gallbladder,abdomen_biliary,primary&mets
+Biliary Tract,abdomen_biliary,primary&mets
+Ampulla of Vater,abdomen_foregut,primary&mets
+Ampulla,abdomen_foregut,primary&mets
+Duodenum,abdomen_foregut,primary&mets
+Duodenum-Jejunum,abdomen_foregut,primary&mets
+Esophagogastric Junction,abdomen_foregut,primary&mets
+Gastric,abdomen_foregut,primary&mets
+Gastric Wall ,abdomen_foregut,primary&mets
+Gastroesophageal,abdomen_foregut,primary&mets
+Gastroesophageal Junction,abdomen_foregut,primary&mets
+GE Junction,abdomen_foregut,primary&mets
+Stomach,abdomen_foregut,primary&mets
+Appendix,abdomen_hindgut,primary&mets
+Ascending colon,abdomen_hindgut,primary&mets
+Ascending Colon,abdomen_hindgut,primary&mets
+Cecum,abdomen_hindgut,primary&mets
+colon,abdomen_hindgut,primary&mets
+Left Colon,abdomen_hindgut,primary&mets
+Colon,abdomen_hindgut,primary&mets
+Colorectal NOS,abdomen_hindgut,primary&mets
+Descending Colon,abdomen_hindgut,primary&mets
+Sigmoid colon,abdomen_hindgut,primary&mets
+Sigmoid Colon,abdomen_hindgut,primary&mets
+Transverse Colon,abdomen_hindgut,primary&mets
+Rectum and Colon,pelvis_hindgut,primary&mets
+Rectum,pelvis_hindgut,primary&mets
+Rectosigmoid Colon,pelvis_hindgut,primary&mets
+Rectosigmoid,pelvis_hindgut,primary&mets
+Rectosimoid Colon,pelvis_hindgut,primary&mets
+Transverse colon,abdomen_hindgut,primary&mets
+Intrahepatic Bile Duct,abdomen_liver,primary&mets
+Liver,abdomen_liver,primary&mets
+liver,abdomen_liver,primary&mets
+Bowel,abdomen_midgut,primary&mets
+Ileum,abdomen_midgut,primary&mets
+Jejunum,abdomen_midgut,primary&mets
+Small Bowel,abdomen_midgut,primary&mets
+Small Intestine,abdomen_midgut,primary&mets
+Small bowel,abdomen_midgut,primary&mets
+Paracolic Gutter,abdomen_node,mets
+Para-Colic Gutter,abdomen_node,mets
+Perigastric nodules,abdomen_node,mets
+Periumbilical mass,abdomen_node,mets
+Perihepatic,abdomen_node,mets
+Perigastric nodule,abdomen_node,mets
+Diaphragm Nodule,abdomen_node,mets
+Peri-intestinal tissue,abdomen_node,mets
+Mesentery,abdomen_peritoneum.serosa,primary&mets
+Omentum,abdomen_peritoneum.serosa,primary&mets
+Peritoneum,abdomen_peritoneum.serosa,primary&mets
+Cul-de-sac,abdomen_peritoneum.serosa,primary&mets
+Colonic serosa,abdomen_peritoneum.serosa,primary&mets
+Ascites,abdomen_peritoneum.serosa,primary&mets
+Peritoneal Fluid,abdomen_peritoneum.serosa,primary&mets
+Falciform Ligament,abdomen_peritoneum.serosa,primary&mets
+Ascites Fluid,abdomen_peritoneum.serosa,primary&mets
+Peritonuem,abdomen_peritoneum.serosa,primary&mets
+Peritoneal Implant,abdomen_peritoneum.serosa,primary&mets
+Uterine serosa,abdomen_peritoneum.serosa,primary&mets
+Falciform ligament,abdomen_peritoneum.serosa,primary&mets
+Gastrocolic Ligament,abdomen_peritoneum.serosa,primary&mets
+Umbilical Mass,abdomen_skin,primary&mets
+Umbilical Cord,abdomen_skin,primary&mets
+Umbilical Area,abdomen_skin,primary&mets
+umbilical ligment,abdomen_skin,mets
+umbilicus,abdomen_skin,primary&mets
+Diaphragm,abdomen_softTissue,mets
+Diaphram,abdomen_softTissue,mets
+Spleen,abdomen_spleen,mets
+Abdomen,abdomen_unknown,primary&mets
+Intraabdominal,abdomen_unknown,primary&mets
+Abdominal Mass,abdomen_unknown,primary&mets
+Axilla,axilla_node,mets
+Left axila,axilla_node,mets
+Left Axilla,axilla_node,mets
+Axillary Lypmh Nodes,axilla_node,mets
+Axillary mass,axilla_node,mets
+Spine,back_bone.spine,primary&mets
+Vertebrate,back_bone.spine,primary&mets
+Spine (Bone),back_bone.spine,primary&mets
+Sacrum,back_bone.spine,primary&mets
+Lumbar spine,back_bone.spine,primary&mets
+Spine (bone),back_bone.spine,primary&mets
+Back,back_softTissue,primary&mets
+Upper Back ,back_softTissue,primary&mets
+Sacral Mass,back_softTissue,primary&mets
+Paraspinal,back_softTissue,primary&mets
+Sacrum soft tissue,back_softTissue,primary&mets
+Soft tissue back,back_softTissue,primary&mets
+Paraspinal Mass,back_softTissue,primary&mets
+Soft Tissue Back,back_softTissue,primary&mets
+"Soft tissue, Posterior Left Shoulder",back_softTissue,primary&mets
+Rib,chest_bone,primary&mets
+Sternum,chest_bone,primary&mets
+manubrium,chest_bone,primary&mets
+Left 2nd rib,chest_bone,primary&mets
+Breast,chest_breast,primary&mets
+Ipsilateral Breast,chest_breast,primary&mets
+Contralateral Breast,chest_breast,primary&mets
+Chest Wall,chest_chestwall,primary&mets
+Parasternal Mass,chest_chestwall,primary&mets
+Intercostal space,chest_chestwall,primary&mets
+Chest wall,chest_chestwall,primary&mets
+Chest wall soft tissue,chest_chestwall,primary&mets
+chest wall,chest_chestwall,primary&mets
+lung,chest_lung,primary&mets
+Lung,chest_lung,primary&mets
+Pleura,chest_pleura.serosa,primary&mets
+Pleural Fluid,chest_pleura.serosa,primary&mets
+Pleural Nodules,chest_pleura.serosa,primary&mets
+Left parietal Pleura,chest_pleura.serosa,primary&mets
+Pleural Fliud,chest_pleura.serosa,primary&mets
+Right Lung Pleura,chest_pleura.serosa,primary&mets
+Chest,chest_unknown,primary
+Clivus,head_bone,primary&mets
+Ethmoid Sinus,head_bone,primary&mets
+Jaw,head_bone,primary&mets
+Mandible,head_bone,primary&mets
+Maxilla,head_bone,primary&mets
+Maxillary Sinus,head_bone,primary&mets
+Skull,head_bone,primary&mets
+Skull Base - Pterygoid margin,head_bone,primary&mets
+Pterygoid Palatine Tissue,head_bone,primary&mets
+Skull base,head_bone,primary&mets
+Skull Base - Pterygoid Margin,head_bone,primary&mets
+Brain,head_cns,primary&mets
+Cerebellum,head_cns,primary&mets
+Right Frontal Brain,head_cns,primary&mets
+Left Frontal Brain,head_cns,primary
+"Brain, Left occipital",head_cns,primary&mets
+Spinal Cord,head_cns,primary&mets
+CSF,head_cns,mets
+spinal fluid,head_cns,mets
+Cerebrospinal Fluid,head_cns,mets
+Lacrimal Gland,head_exocrineGland,primary&mets
+Major Salivary Gland,head_exocrineGland,primary&mets
+Minor Salivary Gland,head_exocrineGland,primary&mets
+Parotid,head_exocrineGland,primary&mets
+Parotid Gland,head_exocrineGland,primary&mets
+Salivary Gland,head_exocrineGland,primary&mets
+Submandibular Gland,head_exocrineGland,primary&mets
+Orbital Floor,head_eye,primary&mets
+Conjunctiva,head_eye,primary&mets
+Eye,head_eye,primary&mets
+Eyelid,head_eye,primary&mets
+Uvea,head_eye,primary&mets
+Orbit,head_eye,primary&mets
+Medial Canthal,head_eye,primary&mets
+Canthus,head_eye,primary&mets
+Orbit - Right,head_eye,primary&mets
+Gingiva,head_oral,primary&mets
+Oral Cavity,head_oral,primary&mets
+Palate,head_oral,primary&mets
+Tongue,head_oral,primary&mets
+Base of tongue ,head_oral,primary
+Mouth,head_oral,primary&mets
+Oropharynx,neck_pharynx,primary
+Tonsil,neck_pharynx,primary
+Nasal Cavity,head_sinonasal,primary&mets
+Nasopharynx,head_sinonasal,primary&mets
+Sinonasal,head_sinonasal,primary&mets
+sinonasal tract,head_sinonasal,primary
+Nose,head_sinonasal,primary
+Nasal/Paranasal cavity,head_sinonasal,primary
+Sinus,head_sinonasal,primary&mets
+Auditory Canal,head_skin,primary&mets
+Cheek,head_skin,primary&mets
+Scalp,head_skin,primary&mets
+"Skin, Ear",head_skin,primary&mets
+Forehead,head_softTissue,primary&mets
+Infratemporal fossa,head_softTissue,primary
+Head and Neck,head_unknown,primary
+In-transit,intransitMet_node,mets
+Bone (femur),lowerExtremity_bone,primary&mets
+Bone (Femur),lowerExtremity_bone,primary&mets
+Fibula,lowerExtremity_bone,primary&mets
+Hip,lowerExtremity_bone,primary&mets
+Tibia,lowerExtremity_bone,primary&mets
+Femur,lowerExtremity_bone,primary&mets
+Groin,lowerExtremity_node,primary&mets
+Heel,lowerExtremity_skin,primary
+Subungual Toe,lowerExtremity_skin,primary
+Buttock,lowerExtremity_softTissue,primary&mets
+Foot,lowerExtremity_softTissue,primary&mets
+Right Foot,lowerExtremity_softTissue,primary&mets
+Leg,lowerExtremity_softTissue,primary&mets
+Knee,lowerExtremity_softTissue,primary&mets
+Calf,lowerExtremity_softTissue,primary
+Thigh,lowerExtremity_softTissue,primary&mets
+Thigh - Left,lowerExtremity_softTissue,primary&mets
+Lower Extremity,lowerExtremity_softTissue,primary&mets
+Esophagus,mediastinum_foregut,primary&mets
+Esophagus/Stomach,mediastinum_foregut,primary&mets
+Heart,mediastinum_heart,primary&mets
+Heart - Right Ventricle,mediastinum_heart,primary&mets
+Mediastinum,mediastinum_node,primary&mets
+Paratracheal,mediastinum_node,primary&mets
+Para-tracheal,mediastinum_node,primary&mets
+Infrahilar mass,mediastinum_node,primary&mets
+Mediastinal Mass,mediastinum_node,primary&mets
+Para esophageal mass,mediastinum_node,primary&mets
+Hilar LN,mediastinum_node,primary&mets
+Pericardium,mediastinum_pericardium.serosa,mets
+pericardial Fluid,mediastinum_pericardium.serosa,mets
+Percardium,mediastinum_pericardium.serosa,mets
+Thymus,mediastinum_thymus,primary&mets
+Trachea,mediastinum_trachea,primary&mets
+Paratracheal mass,mediastinum_trachea,primary&mets
+Epidural,meninges,mets
+Epidural Mass,meninges,mets
+Brain - Dura,meninges,mets
+Neck,neck_unknown,primary&mets
+Supraclavicular Mass,neck_node,mets
+Supraclavicular region,neck_node,mets
+Neck lymph node,neck_node,mets
+Submental lymph node,neck_node,mets
+Pharynx,neck_pharynx,primary&mets
+Cricoid Cartilage,neck_respiratoryTract,primary&mets
+Hypopharynx,neck_respiratoryTract,primary&mets
+Hypopharynx vs Oropharynx,neck_respiratoryTract,primary&mets
+Larynx,neck_respiratoryTract,primary&mets
+Thyroid,neck_thyroid,primary&mets
+"Soft tissue, neck",neck_thyroid,primary&mets
+Right Neck,neck_unknown,primary
+Bladder,pelvis_bladder,primary&mets
+"Bladder, Upper Tract",pelvis_bladder,primary&mets
+Bladder Neck,pelvis_bladder,primary&mets
+Bladder Wall,pelvis_bladder,primary&mets
+Iliac Bone,pelvis_bone,mets
+Left Iliac Bone,pelvis_bone,mets
+Pelvic wall,pelvis_bone,mets
+Iliac,pelvis_bone,mets
+Pubic bone,pelvis_bone,mets
+Pubic Mass,pelvis_bone,mets
+Mons Pubis,pelvis_bone,mets
+Right Ischium,pelvis_bone,mets
+Ischium,pelvis_bone,mets
+Right Iliac Bone,pelvis_bone,mets
+Cervix,pelvis_cervix,primary&mets
+Uterus/Cervix,pelvis_cervix,primary&mets
+Adnexa,pelvis_femaleGenital,primary&mets
+Mullerian origin,pelvis_femaleGenital,primary&mets
+Ovary and Fallopian Tube,pelvis_femaleGenital,primary&mets
+Fallopian Tube,pelvis_femaleGenital,primary&mets
+Adnexa or Endomterium,pelvis_femaleGenital,primary&mets
+Adnexa or Endometrium,pelvis_femaleGenital,primary&mets
+Rectovaginal Septum,pelvis_femaleGenital,primary&mets
+Vas deferens,pelvis_maleGenital,mets
+seminal vesicle,pelvis_maleGenital,mets
+Pelvic Nodule,pelvis_node,primary&mets
+Pelvis,pelvis_unknown,primary&mets
+Pelvic Mass,pelvis_node,primary&mets
+Para iliac,pelvis_node,primary&mets
+Perirectal mass,pelvis_node,primary&mets
+Ovary,pelvis_ovary,primary&mets
+Prostate,pelvis_prostate,primary&mets
+Urethra,pelvis_urinaryTract,primary&mets
+Endometrium,pelvis_uterus,primary&mets
+Uterine,pelvis_uterus,primary&mets
+Uterus,pelvis_uterus,primary&mets
+"Uterus, Ovaries",pelvis_uterus,primary&mets
+Vagina,perineum_femaleGenital,primary&mets
+Vulva,perineum_femaleGenital,primary&mets
+Penis,perineum_maleGenital,primary&mets
+Anus,perineum_skin,primary&mets
+Anal,perineum_skin,primary&mets
+Scrotum,perineum_skin,primary&mets
+Left hemiscrotum,perineum_skin,primary&mets
+Testis,perineum_testis,primary&mets
+Testis and Spermatic Cord,perineum_testis,primary&mets
+Perineal,perineum_unknown,primary
+Adrenal,retroperitoneum_adrenal,primary&mets
+Adrenal Gland,retroperitoneum_adrenal,primary&mets
+Vena cava,retroperitoneum_bloodVessel,mets
+Kidney,retroperitoneum_kidney,primary&mets
+Paracaval,retroperitoneum_node,mets
+Para-aortic mass,retroperitoneum_node,mets
+Para-aortic Mass,retroperitoneum_node,mets
+Periaortic Mass,retroperitoneum_node,mets
+Para caval mass,retroperitoneum_node,mets
+Retroperitoneal LND,retroperitoneum_node,mets
+Retroperitoneal Lymph Node,retroperitoneum_node,mets
+Right retroperitoneal lymph node,retroperitoneum_node,mets
+Para-aortic Region,retroperitoneum_node,mets
+Para Caval Mass,retroperitoneum_node,mets
+pancreas,retroperitoneum_pancreas,primary&mets
+Pancreas,retroperitoneum_pancreas,primary&mets
+Pancreatic,retroperitoneum_pancreas,primary&mets
+pancreatobiliary,retroperitoneum_pancreas,primary&mets
+Pancreatic Head,retroperitoneum_pancreas,primary&mets
+Psoas Muscle,retroperitoneum_softTissue,mets
+Retroperiteneum,retroperitoneum_unknown,primary
+Retroperitenium,retroperitoneum_unknown,primary&mets
+Retroperitoneum,retroperitoneum_unknown,primary&mets
+Kidney/Upper Tract,retroperitoneum_urinaryTract,primary&mets
+Upper Tract,retroperitoneum_urinaryTract,primary&mets
+Ureter,retroperitoneum_urinaryTract,primary&mets
+Renal Pelvis,retroperitoneum_urinaryTract,primary&mets
+Blood Vessel,undeterminate_bloodVessel,primary&mets
+Bone,undeterminate_bone,primary&mets
+Bone Marrow,undeterminate_bone,primary&mets
+Nerve Sheath,undeterminate_nerve,primary
+Peripheral Nervous System,undeterminate_nerve,primary
+Lymph node,undeterminate_node,primary&mets
+Lymph Node,undeterminate_node,primary&mets
+"Lymph Node, Non-Regional",undeterminate_node,primary&mets
+"Lymph Node, Regional",undeterminate_node,primary&mets
+lymph,undeterminate_node,primary&mets
+lymph node,undeterminate_node,primary&mets
+lymphnodes,undeterminate_node,primary&mets
+Melanoma of Unknown Primary,undeterminate_skin,primary&mets
+Nailbed,undeterminate_skin,primary&mets
+Skin,undeterminate_skin,primary&mets
+Sweat Gland,undeterminate_skin,primary&mets
+Subcutaneous Tissue,undeterminate_skin,primary&mets
+Muscle,undeterminate_softTissue,primary&mets
+Soft Tissue,undeterminate_softTissue,primary&mets
+Soft tissue,undeterminate_softTissue,primary&mets
+soft tissue,undeterminate_softTissue,primary&mets
+Cancer of unknown primary,undeterminate_unknown,primary&mets
+Cancer of Unknown Primary,undeterminate_unknown,primary&mets
+Diffuse,undeterminate_unknown,primary&mets
+Not available,undeterminate_unknown,primary&mets
+Not Available,undeterminate_unknown,primary&mets
+Unknown,undeterminate_unknown,primary&mets
+Scapula,upperExtremity_bone,mets
+Humerus,upperExtremity_bone,mets
+Coracoid,upperExtremity_bone,mets
+Thumb,upperExtremity_skin,primary
+Arm,upperExtremity_softTissue,primary&mets
+Forearm,upperExtremity_softTissue,primary&mets
+Hand,upperExtremity_softTissue,primary
+Upper Extremity,upperExtremity_softTissue,primary&mets
