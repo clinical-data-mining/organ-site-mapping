@@ -316,40 +316,26 @@ class OrganMappingAnalysisRND(object):
 
         return df
 
-    def create_binary_met_sites_impact(self, df):
+    def create_binary_met_sites(self, df, col_index, col_met_site, col_count):
         ### Create binary table of RDN annotated data
-        # Pivot data
-        df_to_piv1 = df[['DMP_ID', 'SAMPLE_ID', 'METASTATIC_SITE_BILLING_RDN']]
 
-        df_met_piv = pd.pivot_table(data=df_to_piv1, index='SAMPLE_ID', values='DMP_ID',
-                                    columns='METASTATIC_SITE_BILLING_RDN', aggfunc='count', fill_value=0)
+        df_met_piv = pd.pivot_table(data=df, index=col_index, values=col_count,
+                                    columns=col_met_site, aggfunc='count', fill_value=0)
         df_met_piv = df_met_piv.reset_index()
 
         # Rename columns
-        cols_met = [x for x in df_met_piv.columns if x is not 'SAMPLE_ID']
+        cols_met = [x for x in df_met_piv.columns if x is not col_index]
         cols_met_new = ['HAS_MET_' + x.replace(' ', '_').replace('/', '_') for x in cols_met]
         dict_cols_met = dict(zip(cols_met, cols_met_new))
         df_met_piv = df_met_piv.rename(columns=dict_cols_met)
 
-        # Merge cancer types,
-        df_met_piv_f = df_metatrop_ids.merge(right=df_met_piv, how='right', on='SAMPLE_ID')
-        df_met_piv_f = df_met_piv_f.drop(columns=['SAMPLE_ID'])
-        df_met_piv_f1 = df_met_piv_f[df_met_piv_f[col_ct].notnull()]
-
-        # Compute met sites for each cancer type of a patient
-        df_met_piv_g = df_met_piv_f1.groupby(['DMP_ID', col_ct])[cols_met_new].sum().reset_index()
-        # Merge again with sample ids, such that met sites are duplicated for sample types within a cancer type
-        df_met_piv_m = df_metatrop_ids.merge(right=df_met_piv_g, how='right', on=['DMP_ID', col_ct])
-        df_met_piv_m = df_met_piv_m.drop(columns=col_ct)
-
         # MAke binary/int
-        df_met_piv_m[cols_met_new] = (df_met_piv_m[cols_met_new] > 0).astype(int)
+        df_met_piv[cols_met_new] = (df_met_piv[cols_met_new] > 0).astype(int)
 
         # Fill NAs with 0
-        df_met_piv_m[cols_met_new] = df_met_piv_m[cols_met_new].fillna(0)
-        df_met_piv_m = df_met_piv_m.assign(SOURCE_MET_DATA='IMPACT')
+        df_met_piv[cols_met_new] = df_met_piv[cols_met_new].fillna(0)
+        #
+        # # Save file
+        # df_met_piv.to_csv(fname_save_binary, index=False)
 
-        # Save file
-        df_met_piv_m.to_csv(fname_save_binary, index=False)
-
-        return df_met_piv_m
+        return df_met_piv
