@@ -14,106 +14,66 @@ import pandas as pd
 import constants_darwin as c_dar
 from utils_darwin_etl import set_debug_console
 from organ_mapping_analysis import OrganMappingAnalysisRND
+import sys
+sys.path.insert(0, 'mappings')
+sys.path.insert(0, 'analysis')
+import constants_o_sites as const
+from organ_mapping_rdn_processing import MetastaticSpreadMappingRND
 
 
 # Console settings
 set_debug_console()
 
 # Filename for output
-fname_save_anno = 'metatrop_met_site_annotations_impact.csv'
-fname_save_binary = 'metatrop_met_site_annotations_impact_binary.csv'
+fname_save_anno = 'mskimpact_clinical_data_organ_site_anno.tsv'
 
-## Load Data --------------
-# Load IDs from GENIE table
-fname = c_dar.fname_sample_summary_cbio
+## Load cbioportal clinical data file --------------
+# Load ID names
+fname = 'mskimpact_clinical_data.tsv'
 path = c_dar.pathname
 pathfilename1 = os.path.join(path, fname)
-df_samples = pd.read_csv(pathfilename1, header=0, low_memory=False, sep='\t')
+df_samples1 = pd.read_csv(pathfilename1, header=0, low_memory=False, sep='\t')
+
 # For genie, fix ids
-col_rep = {'Patient ID': 'DMP_ID',
-           'Sample ID': 'SAMPLE_ID',
-           'Sex': 'SEX',
-           'Cancer Type': 'CANCER_TYPE',
-           'Sample Type': 'SAMPLE_TYPE',
-           'Primary Tumor Site': 'PRIMARY_SITE',
-           'Metastatic Site': 'METASTATIC_SITE'}
-df_metatrop = df_samples.rename(columns=col_rep)
-
-
-df_metatrop_met = df_metatrop[df_metatrop['SAMPLE_TYPE'] == 'Metastasis']
+col_id = 'SAMPLE_ID'
+col_id2 = 'DMP_ID'
 col_ct = 'CANCER_TYPE'
-df_metatrop_ids = df_metatrop_met[['SAMPLE_ID', 'DMP_ID', col_ct]]
+col_sex = 'SEX'
+col_prim_site = 'PRIMARY_SITE'
+col_met_site = 'METASTATIC_SITE'
+col_sample_type = 'SAMPLE_TYPE'
+col_rep = {'Patient ID': col_id2,
+           'Sample ID': col_id,
+           'Sex': col_sex,
+           'Cancer Type': col_ct,
+           'Primary Tumor Site': col_prim_site,
+           'Metastatic Site': col_met_site,
+           'Sample Type': col_sample_type}
+df_samples1 = df_samples1.rename(columns=col_rep)
+df_samples = df_samples1[list(col_rep.values())]
+# df_metatrop_met = df_samples[df_samples[col_sample_type] == 'Metastasis']
+# df_metatrop_prim = df_samples[df_samples[col_sample_type] != 'Metastasis']
+df_metatrop_met = df_samples
 
-fname = 'oncotree_to_icd_billing_oncotree_organ_mapping.csv'
-path = '/Users/fongc2/Documents/github/MSK/DARWIN_ETL/data/mapping_renzo'
-pathfilename1 = os.path.join(path, fname)
-df_oncotree_to_oncotree = pd.read_csv(pathfilename1, header=0, low_memory=False, sep=',')
+# Load RDN mapping
+obj_met_map_rdn = MetastaticSpreadMappingRND(path=const.pathname,
+                                             fname_all_sites=const.fname_mapping_rdn_all_sites,
+                                             fname_hematogenous=const.fname_mapping_rdn_hematogenous,
+                                             fname_localext=const.fname_mapping_rdn_localext,
+                                             fname_lymphatic=const.fname_mapping_rdn_lymphatic,
+                                             fname_site_map=const.fname_mapping_rdn_site_map,
+                                             fname_billing_map=const.fname_mapping_rdn_billing_map,
+                                             fname_billing_code_dict=const.fname_mapping_rdn_to_billing_codes)
 
-# Obtain Renzo's mapping
-obj_mapping = OrganMappingAnalysisRND(const_dar=c_dar)
-df_met_sites_impact = obj_mapping.annotate_mapping_impact_met_samples(df_samples=df_metatrop_met, col_primary_site='PRIMARY_SITE', col_met_site='METASTATIC_SITE')
-cols_sites_impact = ['SAMPLE_ID', 'DMP_ID', 'METASTATIC_SITE', 'PRIMARY_SITE_MAPPED', 'METASTATIC_SITE_MAPPED',
-                     'LYMPH_SPREAD', 'LOCAL_EXTENSION', 'hematogenous_grouping', 'METASTATIC_SITE_ONCOTREE_RDN']
-df_met_sites_impact1 = df_met_sites_impact[cols_sites_impact]
+# Load annoations object
+obj_mapping = OrganMappingAnalysisRND(obj_met_map=obj_met_map_rdn)
 
-
-# Merge map with mapping to oncotree normalized mets sites
-df_met_sites_impact2 = df_met_sites_impact1.merge(right=df_oncotree_to_oncotree, how='left',
-                                                  left_on='METASTATIC_SITE_ONCOTREE_RDN',
-                                                  right_on='tissue_oncotree')
-# Drop columns
-df_met_sites_impact2 = df_met_sites_impact2.drop(columns=['METASTATIC_SITE_ONCOTREE_RDN', 'tissue_oncotree'])
-df_met_sites_impact2 = df_met_sites_impact2.rename(columns={'METASTATIC_SITE_ONCOTREE':'METASTATIC_SITE_ONCOTREE_NORM'})
-
-df_met_sites_impact2['METASTATIC_SITE_ONCOTREE_NORM'] = df_met_sites_impact2['METASTATIC_SITE_ONCOTREE_NORM'].fillna('OTHER')
-
-## Process and merge data
-# Merge Renzo's annotations to the metatrop data
-df_met_rdn_anno = df_met_sites_impact2
-
-# Reclassify sites to be LN based on Renzo's mapping
-df_met_rdn_anno.loc[df_met_rdn_anno['LYMPH_SPREAD'].notnull(), 'METASTATIC_SITE_ONCOTREE_NORM'] = 'LYMPH'
-df_met_rdn_anno = df_met_rdn_anno[~df_met_rdn_anno['METASTATIC_SITE_ONCOTREE_NORM'].isin(['', 'UNKNOWN'])]
-df_met_rdn_anno.loc[df_met_rdn_anno['LYMPH_SPREAD'] == 'DISTANT', 'METASTATIC_SITE_ONCOTREE_NORM'] = 'DIST_LYMPH'
+# Annotate IMPACT sample site data
+df_met_sites_impact = obj_mapping.annotate_mapping_impact_met_samples(df_samples=df_metatrop_met,
+                                                                      col_primary_site=col_prim_site,
+                                                                      col_met_site=col_met_site,
+                                                                      label_dist_ln=True)
 
 # Save RDN annotations
-df_met_rdn_anno.to_csv(fname_save_anno, index=False)
-
-### ##############################
-### Create binary table of RDN annotated data
-# Pivot data
-df_to_piv1 = df_met_rdn_anno[['DMP_ID', 'SAMPLE_ID', 'METASTATIC_SITE_ONCOTREE_NORM']]
-
-df_met_piv = pd.pivot_table(data=df_to_piv1, index=['SAMPLE_ID'], values='DMP_ID',
-                            columns='METASTATIC_SITE_ONCOTREE_NORM', aggfunc='count', fill_value=0)
-df_met_piv = df_met_piv.reset_index()
-
-# Rename columns
-cols_met = [x for x in df_met_piv.columns if x is not 'SAMPLE_ID']
-cols_met_new = ['HAS_MET_' + x.replace(' ', '_').replace('/', '_') for x in cols_met]
-dict_cols_met = dict(zip(cols_met, cols_met_new))
-df_met_piv = df_met_piv.rename(columns=dict_cols_met)
-
-# Merge cancer types,
-df_met_piv_f = df_metatrop_ids.merge(right=df_met_piv, how='right', on='SAMPLE_ID')
-df_met_piv_f = df_met_piv_f.drop(columns=['SAMPLE_ID'])
-df_met_piv_f1 = df_met_piv_f[df_met_piv_f[col_ct].notnull()]
-
-# Compute met sites for each cancer type of a patient
-df_met_piv_g = df_met_piv_f1.groupby(['DMP_ID', col_ct])[cols_met_new].sum().reset_index()
-# Merge again with sample ids, such that met sites are duplicated for sample types within a cancer type
-df_met_piv_m = df_metatrop_ids.merge(right=df_met_piv_g, how='right', on=['DMP_ID', col_ct])
-df_met_piv_m = df_met_piv_m.drop(columns=col_ct)
-
-# MAke binary/int
-df_met_piv_m[cols_met_new] = (df_met_piv_m[cols_met_new] > 0).astype(int)
-
-# Fill NAs with 0
-df_met_piv_m[cols_met_new] = df_met_piv_m[cols_met_new].fillna(0)
-df_met_piv_m = df_met_piv_m.assign(SOURCE_MET_DATA='IMPACT')
-
-# Save file
-df_met_piv_m.to_csv(fname_save_binary, index=False)
-
-
-tmp = 0
+pathfilename_save = os.path.join(path, fname_save_anno)
+df_met_sites_impact.to_csv(pathfilename_save, index=False, sep='\t')

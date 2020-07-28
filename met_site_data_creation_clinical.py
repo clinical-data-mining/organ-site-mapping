@@ -32,7 +32,7 @@ col_primary_site = 'PRIMARY_SITE'
 
 ## Load cbioportal clinical data file --------------
 # Load ID names
-fname = c_dar.fname_sample_summary_cbio
+fname = 'mskimpact_clinical_data.tsv'
 path = c_dar.pathname
 pathfilename1 = os.path.join(path, fname)
 df_samples1 = pd.read_csv(pathfilename1, header=0, low_memory=False, sep='\t')

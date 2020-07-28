@@ -68,7 +68,7 @@ def _mapping_icd_9_10_to_rdn_notation():
     map_list.append(mapping)
 
     # abdomen_liver
-    pat_list = ['197.7', 'C78.7', 'C7B.02']
+    pat_list = ['197.7', 'C78.7', 'C7B.02', '209.72']
     mapping = {'abdomen_liver': pat_list}
     map_list.append(mapping)
 

@@ -57,6 +57,7 @@ class OrganMappingAnalysisRND(object):
         df_sites2 = df_sites2.drop(columns=right_on)
 
         # Hematogenous mapping
+        df_map_hematogenous = df_map_hematogenous.drop(columns='origin')
         df_sites3 = df_sites2.merge(right=df_map_hematogenous, how='left',
                                     left_on=self._col_rdn_met_map,
                                     right_on='clean_site')
@@ -141,6 +142,10 @@ class OrganMappingAnalysisRND(object):
             df_sites3.loc[logic_dist_ln, self._col_rdn_billing_met_map] = 'DIST_LYMPH'
             df_sites3.loc[logic_dist_ln, self._col_rdn_onco_met_map] = 'Distant Lymphatic'
 
+            logic_reg_ln = df_sites3['LYMPH_SPREAD'] == 'REGIONAL'
+            df_sites3.loc[logic_reg_ln, self._col_rdn_billing_met_map] = 'REGIONAL_LYMPH'
+            df_sites3.loc[logic_reg_ln, self._col_rdn_onco_met_map] = 'Regional Lymphatic'
+
         return df_sites3
 
     def annotate_clinical_sample_for_mapping(self, df_samples, col_primary_site, col_met_site):
@@ -153,6 +158,7 @@ class OrganMappingAnalysisRND(object):
 
         # Mapping df
         df_map_all = self._obj_met_map.df_map_all_sites
+        df_map_all = df_map_all.drop(columns='origin')
 
         # Merge mapping to clinical sample file sample site location
         # Primary tumor locations
@@ -160,8 +166,7 @@ class OrganMappingAnalysisRND(object):
                                              left_on=col_prim_upper, right_on='raw_site')
         rename_map_p = {'clean_site': self._col_rdn_prim_map,
                         'clean_site_main': self._col_rdn_prim_map + '_MAIN',
-                        'clean_site_secondary': self._col_rdn_prim_map + '_SECONDARY',
-                        'origin': 'origin_primary'}
+                        'clean_site_secondary': self._col_rdn_prim_map + '_SECONDARY'}
         df_samples_mapped = df_samples_mapped.rename(columns=rename_map_p)
         df_samples_mapped = df_samples_mapped.drop(columns='raw_site')
 
@@ -170,8 +175,7 @@ class OrganMappingAnalysisRND(object):
                                                     left_on=col_met_upper, right_on='raw_site')
         rename_map_m = {'clean_site': self._col_rdn_met_map,
                         'clean_site_main': self._col_rdn_met_map + '_MAIN',
-                        'clean_site_secondary': self._col_rdn_met_map + '_SECONDARY',
-                        'origin': 'origin_primary'}
+                        'clean_site_secondary': self._col_rdn_met_map + '_SECONDARY'}
         df_samples_mapped = df_samples_mapped.rename(columns=rename_map_m)
         df_samples_mapped = df_samples_mapped.drop(columns=['raw_site', col_prim_upper, col_met_upper])
 
@@ -220,6 +224,10 @@ class OrganMappingAnalysisRND(object):
             logic_dist_ln = df_sites_with_dx5['LYMPH_SPREAD'] == 'DISTANT'
             df_sites_with_dx5.loc[logic_dist_ln, self._col_rdn_billing_met_map] = 'DIST_LYMPH'
             df_sites_with_dx5.loc[logic_dist_ln, self._col_rdn_onco_met_map] = 'Distant Lymphatic'
+
+            logic_reg_ln = df_sites_with_dx5['LYMPH_SPREAD'] == 'REGIONAL'
+            df_sites_with_dx5.loc[logic_reg_ln, self._col_rdn_billing_met_map] = 'REGIONAL_LYMPH'
+            df_sites_with_dx5.loc[logic_reg_ln, self._col_rdn_onco_met_map] = 'Regional Lymphatic'
 
         return df_sites_with_dx5
 
