@@ -6,8 +6,8 @@ Cancer is a disease that can involve metastatic spread from it primary site (Ex.
 However, the naming conventions used for this organs can slightly vary, or may be specified with more granularity than commonly appropriate. 
 This is evident in free text entries, where the variability is large.  
 
-This repository contains functions that, for a given input file containing a list of organ sites, will annotate the table with a standardized organ site map. 
-The annotator will leverage various organ site names to a standard ontology.
+This repository contains functions that will annotate the MSK-IMPACT cohort summary table with a standardized organ site map between primary and metastatic organ sites. 
+The annotator will either leverage various organ site names OR secondard malignant neoplasm ICD billing codes to a standard organ site ontology.
 
 
 ## Standard Ontologies
@@ -60,6 +60,41 @@ An annotated version of the input dataset. Additional columns:
 |METASTATIC_SITE_ONCOTREE_RDN  |	Metastatic site annotations from METASTATIC_SITE_RDN_MAP, aggregated to fit oncotree tissue types |
 |METASTATIC_SITE_BILLING_RDN  | Metastatic site annotations from METASTATIC_SITE_RDN_MAP, aggregated to fit ICD Billing codes (Secondary malignant neoplasms) | 
 
+
+## Relevant Functions
+#### MetastaticSpreadMappingRND (`organ_mapping_analysis.py`)
+##### Inputs
+`path`: Pathname, assuming all files are in a folder
+
+`fname_all_sites`: Curated sites connecting to cbioportal study summary (MSK-IMPACT) 
+
+`fname_hematogenous`: Hematogenous spread mapping based on metastatic site
+
+`fname_localext`: Mapping to delineate affected local and regional organs 
+
+`fname_lymphatic`: Mapping to delineate affected local and distant lymph nodes
+
+`fname_site_map`: Conversion map of fname_all_sites to oncotree tissue types
+
+`fname_billing_map`: Conversion map of fname_all_sites to sites standardized to ICD billing ontologies 
+
+`fname_billing_code_dict`: Conversion map of fname_all_sites ICD billing codes
+
+##### Output
+Python object with mapping dataframes as member variables.
+ 
+
+#### MetastaticSpreadMappingRND (`organ_mapping_rdn_processing.py`) 
+##### Inputs
+`df_samples`: Input dataframe containing free-text primary and/or metastatic site names 
+
+`col_primary_site`: Column name for primary cancer site 
+
+`col_met_site`: Column name for metastatic cancer site 
+
+`label_dist_ln`: True or False if distant lymph nodes should be incorporated in mapping
+
+
 ## Jupyter Notebook Examples
 #### met_site_data_creation_impact.ipynb
 ##### Input 
@@ -67,10 +102,9 @@ Organ sites using the MSK-IMPACT cohort (Nat. Med. 2017) via [cBioPortal](https:
 
 Data from this cohort is located at `/demo/msk_impact_2017_clinical_data.tsv`
 
+##### Output
+After annotations are added, dataframe is saved to `/demo/impact2017_met_site_annotations_impact.csv`
 
-
-
-## Relevant Functions
 
 
 
