@@ -78,7 +78,7 @@ def _mapping_icd_9_10_to_rdn_notation():
     map_list.append(mapping)
 
     # abdomen_peritoneum.serosa
-    pat_list = ['197.6', 'C78.6', 'C7B.04']
+    pat_list = ['197.6', 'C78.6', 'C7B.04', '209.74']
     mapping = {'abdomen_peritoneum.serosa': pat_list}
     map_list.append(mapping)
 
@@ -384,7 +384,7 @@ def _mapping_icd_9_10_to_rdn_notation():
     # undeterminate_bloodVessel
 
     # undeterminate_bone
-    pat_list = ['C7B.03', 'C79.51', 'C79.52', '198.5']
+    pat_list = ['C7B.03', 'C79.51', 'C79.52', '198.5', '209.73']
     mapping = {'undeterminate_bone': pat_list}
     map_list.append(mapping)
 
@@ -394,12 +394,12 @@ def _mapping_icd_9_10_to_rdn_notation():
     map_list.append(mapping)
 
     # undeterminate_node
-    pat_list = ['196.8', '196.9', 'C77.8', 'C77.9', 'C7B.01']
+    pat_list = ['196.8', '196.9', 'C77.8', 'C77.9', 'C7B.01', '209.71']
     mapping = {'undeterminate_node': pat_list}
     map_list.append(mapping)
 
     # undeterminate_skin
-    pat_list = ['198.2', 'C79.2']
+    pat_list = ['198.2', 'C79.2', '209.75', 'C7B.1']
     mapping = {'undeterminate_skin': pat_list}
     map_list.append(mapping)
 
@@ -409,7 +409,7 @@ def _mapping_icd_9_10_to_rdn_notation():
     map_list.append(mapping)
 
     # undeterminate_unknown
-    pat_list = ['C7B.00', 'C7B.09', 'C79.89', 'C79.9', '198.89', 'C7B.8', 'C7B.1']
+    pat_list = ['C7B.00', 'C7B.09', 'C79.89', 'C79.9', '198.89', 'C7B.8', '209.79', '209.70']
     mapping = {'undeterminate_unknown': pat_list}
     map_list.append(mapping)
 
@@ -457,7 +457,7 @@ def main(argv):
         outputfile = args.o
 
     if not outputfile:
-        print('for help: python get_xnat_dicom.py -h')
+        print('')
         sys.exit(2)
     else:
         print(outputfile)
@@ -471,10 +471,10 @@ def main(argv):
 
 if __name__ == "__main__":
     # Debug example:
-    # argv = [
-    #     '-o', 'map_icd_codes_to_rdn_sites.csv'
-    # ]
-    # main(argv)
+    argv = [
+        '-o', 'map_icd_codes_to_rdn_sites.csv'
+    ]
+    main(argv)
 
     # Command line example:
     # python organ_mapping_icd_billing_to_rdn.py -o "map_icd_codes_to_rdn_sites.csv"

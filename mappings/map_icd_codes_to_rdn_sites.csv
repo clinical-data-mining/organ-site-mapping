@@ -13,6 +13,7 @@ abdomen_node,C77.2
 abdomen_peritoneum.serosa,197.6
 abdomen_peritoneum.serosa,C78.6
 abdomen_peritoneum.serosa,C7B.04
+abdomen_peritoneum.serosa,209.74
 axilla_node,C77.3
 axilla_node,196.3
 chest_breast,C79.81
@@ -68,6 +69,7 @@ undeterminate_bone,C7B.03
 undeterminate_bone,C79.51
 undeterminate_bone,C79.52
 undeterminate_bone,198.5
+undeterminate_bone,209.73
 undeterminate_nerve,C79.40
 undeterminate_nerve,C79.49
 undeterminate_node,196.8
@@ -75,12 +77,16 @@ undeterminate_node,196.9
 undeterminate_node,C77.8
 undeterminate_node,C77.9
 undeterminate_node,C7B.01
+undeterminate_node,209.71
 undeterminate_skin,198.2
 undeterminate_skin,C79.2
+undeterminate_skin,209.75
+undeterminate_skin,C7B.1
 undeterminate_unknown,C7B.00
 undeterminate_unknown,C7B.09
 undeterminate_unknown,C79.89
 undeterminate_unknown,C79.9
 undeterminate_unknown,198.89
 undeterminate_unknown,C7B.8
-undeterminate_unknown,C7B.1
+undeterminate_unknown,209.79
+undeterminate_unknown,209.70
