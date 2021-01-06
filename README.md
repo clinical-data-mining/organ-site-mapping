@@ -24,10 +24,9 @@ Annotations between primary and metastatic sites include:
 Granularity may vary from project to project, and to accommodate, two additional organ mapping profiles have been created to
 - Reduce the number of metastatic sites for the purpose of aggregating cases to increase the N in bins
 - Have the metastatic sites reflect that of how ICD billings codes for how secondary malignant neoplasms are represented
-Therefore, three mappings are included in this annotation package: 
-1. A manually curated version, where, for each site in a 
-2. A mapping of tissue types according to [oncotree](http://oncotree.mskcc.org/#/home) tissue types
-3. A mapping of metastatic sites based on [ICD billings codes](https://icdlist.com/) on secondary malignant neoplasms     
+
+
+The mappings `README` provides detailed information on mappings of organ sites and routes of metastatic dissemination: [LINK](https://github.com/clinical-data-mining/organ-site-mapping/tree/metastatic_tropisms/mappings)       
 
 ##### More information
 See the readme in `/mappings` for comprehensive details on the mapping
