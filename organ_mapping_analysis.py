@@ -6,6 +6,7 @@ to perform analysis on which dx are local, regional, and distant.
 Also performs mapping for Hematogenous metastatic dissemination
 """
 import pandas as pd
+import numpy as np
 
 
 class OrganMappingAnalysisRND(object):
@@ -94,7 +95,7 @@ class OrganMappingAnalysisRND(object):
 
         return df_sites7
 
-    def annotate_icd_billing_met_dx(self, df_dx_mets, col_icd_billing, col_sex):
+    def annotate_icd_billing_met_dx(self, df_dx_mets, col_icd_billing, col_sex, add_msk_met_anno=False):
         # Function that will map primary site and metastatic sample site for all metastatic impact sample
 
         # Call ICD billing to RDN mapping
@@ -109,23 +110,27 @@ class OrganMappingAnalysisRND(object):
                                        right_on=col_icd_bill_2)
 
         # REMOVE cases where mets go to female genitals in male patients
-        logic_rjt1a = (df_dx_mets1[col_sex] == 'Male')
+        logic_rjt1a = (df_dx_mets1[col_sex] == 'Male') | (df_dx_mets1[col_sex] == 'MALE')
         logic_rjt1b = (df_dx_mets1[self._col_rdn_met_map] == 'pelvis_femaleGenital')
         logic_rjt1 = logic_rjt1a & logic_rjt1b
 
-        logic_rjt2a = (df_dx_mets1[col_sex] == 'Female')
+        logic_rjt2a = (df_dx_mets1[col_sex] == 'Female') | (df_dx_mets1[col_sex] == 'FEMALE')
         logic_rjt2b = (df_dx_mets1[self._col_rdn_met_map] == 'pelvis_maleGenital')
         logic_rjt2 = logic_rjt2a & logic_rjt2b
 
-        df_dx_mets2 = df_dx_mets1[~(logic_rjt1 | logic_rjt2)]
+        df_dx_mets2 = df_dx_mets1[~(logic_rjt1 | logic_rjt2)].copy()
 
         # If gender column is null, remove duplicates that were generate
         log_sex_null = df_dx_mets2[col_sex].isnull() & (logic_rjt1b | logic_rjt2b)
-        df_dx_mets2.loc[log_sex_null, 'METASTATIC_SITE_RDN_MAP'] = pd.np.NaN
+        df_dx_mets2.loc[log_sex_null, 'METASTATIC_SITE_RDN_MAP'] = np.NaN
         df_dx_mets2 = df_dx_mets2.drop_duplicates()
 
         # Drop one of the billing code columns
         df_dx_mets2 = df_dx_mets2.drop(columns=[col_icd_bill_2])
+        
+        if (add_msk_met_anno == True):
+            df_dx_mets2 = df_dx_mets2.merge(right=self._obj_met_map.df_map_icd_mapping, how='left', left_on='METASTATIC_SITE_RDN_MAP', right_on='ICD_BILLING_MAPPING')
+            df_dx_mets2 = df_dx_mets2.drop(columns=['clean_site', 'ICD_BILLING_MAPPING'])
 
         return df_dx_mets2
 
@@ -206,11 +211,11 @@ class OrganMappingAnalysisRND(object):
         df_sites_with_dx = df_samples_dx_map.merge(right=df_dx_mets1, how='inner', on=col_patient_id)
 
         # REMOVE cases where mets go to female genitals in male patients
-        logic_rjt1a = (df_sites_with_dx[col_sex] == 'Male')
+        logic_rjt1a = (df_sites_with_dx[col_sex] == 'Male') | (df_sites_with_dx[col_sex] == 'MALE')
         logic_rjt1b = (df_sites_with_dx[self._col_rdn_met_map] == 'pelvis_femaleGenital')
         logic_rjt1 = logic_rjt1a & logic_rjt1b
 
-        logic_rjt2a = (df_sites_with_dx[col_sex] == 'Female')
+        logic_rjt2a = (df_sites_with_dx[col_sex] == 'Female') | (df_sites_with_dx[col_sex] == 'FEMALE')
         logic_rjt2b = (df_sites_with_dx[self._col_rdn_met_map] == 'pelvis_maleGenital')
         logic_rjt2 = logic_rjt2a & logic_rjt2b
 
