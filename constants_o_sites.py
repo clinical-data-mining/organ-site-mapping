@@ -3,7 +3,7 @@ constants_o_sites.py
 
 Defined darwin data filename constants to use across the project
 """
-pathname = '/mind_data/fongc2/organ-site-mapping/mappings'
+pathname = '/mind_data/cdm_repos/organ-site-mapping/mappings'
 
 # RDN Organ Mapping
 fname_mapping_rdn_all_sites = 'all_sites_clean.csv'
